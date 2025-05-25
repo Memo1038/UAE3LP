@@ -148,7 +148,7 @@
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
-      const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzkLcPT0uT9nhQ9mHH7lXkwPEpAK5fet6U0SliMXkFerevis10Uv5IB5Frs8lBxYNrafA/exec';
       fetch(scriptURL, {
         method: 'POST',
         body: new URLSearchParams(data)
