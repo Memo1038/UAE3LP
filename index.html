@@ -103,9 +103,9 @@
     <div id="countdown">Time left: 06:00</div>
 
     <div class="button-container">
-      <button class="offer-btn" onclick="offerClicked()">Offer 1</button>
-      <button class="offer-btn" onclick="offerClicked()">Offer 2</button>
-      <button class="offer-btn" onclick="offerClicked()">Offer 3</button>
+      <button class="offer-btn" onclick="offerClicked('https://aff.monymakers.online/?utm_medium=57b1ff3e1f746e42f3b73051a72444dd7acb59fd&utm_campaign=target_AE_4aafb5_wifi')">Offer 1</button>
+      <button class="offer-btn" onclick="offerClicked('https://aff.monymakers.online/?utm_medium=28470715e92b9df4d5b49e691293d382e163472e&utm_campaign=target_AE_d77b39_wifi')">Offer 2</button>
+      <button class="offer-btn" onclick="offerClicked('https://aff.monymakers.online/?utm_medium=e536e56c1ffd1fc8133c0211a4e2c0edde9b1795&utm_campaign=target_AE_c8f43d_wifi')">Offer 3</button>
     </div>
 
     <form id="userForm" onsubmit="submitForm(event)">
@@ -138,7 +138,7 @@
     }
     updateCountdown();
 
-    // Language Translation
+    // Multilingual Support
     const translations = {
       en: {
         title: "Add your phone number and confirm the SMS code",
@@ -160,63 +160,4 @@
       },
       de: {
         title: "Fügen Sie Ihre Telefonnummer hinzu und bestätigen Sie den SMS-Code",
-        subtitle1: "Erhalten Sie die Chance auf einen 400 AED Gutschein",
-        subtitle2: "Einfache Schritte... Schließen Sie die 3 Angebote ab und kehren Sie zurück, um Ihre Daten einzugeben",
-        limitedOffer: "Begrenztes Angebot"
-      },
-      hi: {
-        title: "अपना फ़ोन नंबर जोड़ें और एसएमएस कोड की पुष्टि करें",
-        subtitle1: "400 AED वाउचर जीतने का मौका पाएं",
-        subtitle2: "आसान चरण... 3 ऑफ़र पूरे करें और फिर इस पेज पर वापस आकर अपना नाम और फ़ोन जोड़ें",
-        limitedOffer: "सीमित समय का ऑफर"
-      },
-      ur: {
-        title: "اپنا فون نمبر شامل کریں اور SMS کوڈ کی تصدیق کریں",
-        subtitle1: "400 AED واؤچر جیتنے کا موقع حاصل کریں",
-        subtitle2: "آسان مراحل... 3 آفرز مکمل کریں پھر واپس آکر اپنی تفصیلات درج کریں",
-        limitedOffer: "محدود پیشکش"
-      },
-      zh: {
-        title: "添加您的手机号码并确认短信验证码",
-        subtitle1: "有机会获得400迪拉姆代金券",
-        subtitle2: "简单步骤…完成三个优惠后回来填写您的姓名和电话",
-        limitedOffer: "限时优惠"
-      },
-      es: {
-        title: "Agrega tu número de teléfono y confirma el código SMS",
-        subtitle1: "Consigue la oportunidad de ganar un cupón de 400 AED",
-        subtitle2: "Pasos fáciles... completa las 3 ofertas y vuelve para dejar tus datos",
-        limitedOffer: "Oferta limitada"
-      }
-    };
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const langCode = (navigator.language || navigator.userLanguage || 'en').slice(0, 2).toLowerCase();
-      const lang = translations[langCode] ? langCode : 'en';
-
-      document.getElementById("main-title").textContent = translations[lang].title;
-      document.getElementById("subtitle1").textContent = translations[lang].subtitle1;
-      document.getElementById("subtitle2").textContent = translations[lang].subtitle2;
-      document.getElementById("limited-offer").textContent = translations[lang].limitedOffer;
-    });
-
-    // Offer logic
-    let offersCompleted = 0;
-    function offerClicked() {
-      offersCompleted++;
-      if (offersCompleted >= 3) {
-        document.getElementById("userForm").style.display = "block";
-      }
-    }
-
-    function submitForm(e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const country = document.getElementById("country").value;
-      const phone = document.getElementById("phone").value;
-      alert("Submitted! Thank you.");
-      // Replace this alert with your webhook logic or backend request
-    }
-  </script>
-</body>
-</html>
+        subtitle1
