@@ -2,162 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>UAE_Carrier_wifi</title>
+  <title>Complete Offers to Continue</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #f9f9f9, #e0e0e0);
-      margin: 0;
-      padding: 0;
       text-align: center;
-    }
-
-    .container {
       padding: 20px;
+      background-color: #f0f0f0;
     }
 
-    h1, h2, h3 {
-      margin: 10px 0;
-    }
-
-    .button-container {
-      margin: 30px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
+    h1, h2 {
+      margin-bottom: 10px;
     }
 
     .offer-btn {
-      padding: 15px 25px;
+      padding: 15px 30px;
       font-size: 18px;
+      margin: 15px;
+      border: none;
       background-color: #4CAF50;
       color: white;
-      border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      animation: pulse 2s infinite;
-      width: 90%;
-      max-width: 300px;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    form {
+    #userForm {
       display: none;
       margin-top: 30px;
     }
 
     input {
       padding: 10px;
-      margin: 10px;
+      margin: 8px;
       width: 80%;
       max-width: 300px;
       font-size: 16px;
     }
 
     .submit-btn {
-      padding: 12px 20px;
-      background-color: #4CAF50;
+      padding: 12px 25px;
+      background-color: #2196F3;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
       font-size: 18px;
       cursor: pointer;
-    }
-
-    #limited-offer {
-      margin-top: 40px;
-      font-weight: bold;
-      color: red;
-      font-size: 20px;
-      animation: shake 1s infinite;
-    }
-
-    @keyframes shake {
-      0% { transform: translate(1px, 0); }
-      25% { transform: translate(-1px, 0); }
-      50% { transform: translate(1px, 0); }
-      75% { transform: translate(-1px, 0); }
-      100% { transform: translate(1px, 0); }
-    }
-
-    #countdown {
-      font-size: 20px;
-      color: #ff0000;
-      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1 id="main-title">Add your phone number and confirm the SMS code</h1>
-    <h2 id="subtitle1" style="color:#4CAF50;">Get chance for 400 AED voucher</h2>
-    <h3 id="subtitle2">Easy Steps . . . Complete the 3 offers then come back to this page to add your name and phone to contact you</h3>
+  <h1>🎁 Complete 3 Offers</h1>
+  <h2>To Unlock the Prize Form</h2>
 
-    <div id="countdown">Time left: 06:00</div>
-
-    <div class="button-container">
-      <button class="offer-btn" onclick="offerClicked('https://aff.monymakers.online/?utm_medium=57b1ff3e1f746e42f3b73051a72444dd7acb59fd&utm_campaign=target_AE_4aafb5_wifi')">Offer 1</button>
-      <button class="offer-btn" onclick="offerClicked('https://aff.monymakers.online/?utm_medium=28470715e92b9df4d5b49e691293d382e163472e&utm_campaign=target_AE_d77b39_wifi')">Offer 2</button>
-      <button class="offer-btn" onclick="offerClicked('https://aff.monymakers.online/?utm_medium=e536e56c1ffd1fc8133c0211a4e2c0edde9b1795&utm_campaign=target_AE_c8f43d_wifi')">Offer 3</button>
-    </div>
-
-    <form id="userForm" onsubmit="submitForm(event)">
-      <input type="text" id="name" placeholder="Name" required><br>
-      <input type="text" id="country" placeholder="Country" required><br>
-      <input type="tel" id="phone" placeholder="Phone Number" required><br>
-      <button class="submit-btn" type="submit">Submit</button>
-    </form>
-
-    <footer>
-      <p id="limited-offer">Limited offer</p>
-    </footer>
+  <div id="offers">
+    <button class="offer-btn" onclick="visitOffer(1)">Offer 1</button>
+    <button class="offer-btn" onclick="visitOffer(2)">Offer 2</button>
+    <button class="offer-btn" onclick="visitOffer(3)">Offer 3</button>
   </div>
 
-  <script>
-    // Countdown Timer - 6 minutes
-    let timerDuration = 6 * 60;
-    const countdownEl = document.getElementById("countdown");
+  <form id="userForm" onsubmit="submitForm(event)">
+    <h2>🎉 You unlocked the form!</h2>
+    <input type="text" placeholder="Your Name" required><br>
+    <input type="text" placeholder="Country" required><br>
+    <input type="tel" placeholder="Phone Number" required><br>
+    <button class="submit-btn" type="submit">Submit</button>
+  </form>
 
-    function updateCountdown() {
-      const minutes = String(Math.floor(timerDuration / 60)).padStart(2, '0');
-      const seconds = String(timerDuration % 60).padStart(2, '0');
-      countdownEl.textContent = `Time left: ${minutes}:${seconds}`;
-      if (timerDuration > 0) {
-        timerDuration--;
-        setTimeout(updateCountdown, 1000);
-      } else {
-        countdownEl.textContent = "Time expired!";
+  <script>
+    const offerUrls = {
+      1: "https://aff.monymakers.online/?utm_medium=57b1ff3e1f746e42f3b73051a72444dd7acb59fd&utm_campaign=target_AE_4aafb5_wifi",
+      2: "https://aff.monymakers.online/?utm_medium=28470715e92b9df4d5b49e691293d382e163472e&utm_campaign=target_AE_d77b39_wifi",
+      3: "https://aff.monymakers.online/?utm_medium=e536e56c1ffd1fc8133c0211a4e2c0edde9b1795&utm_campaign=target_AE_c8f43d_wifi"
+    };
+
+    const clickedOffers = new Set();
+
+    function visitOffer(offerNum) {
+      window.open(offerUrls[offerNum], "_blank");
+      clickedOffers.add(offerNum);
+
+      if (clickedOffers.size === 3) {
+        document.getElementById("userForm").style.display = "block";
       }
     }
-    updateCountdown();
 
-    // Multilingual Support
-    const translations = {
-      en: {
-        title: "Add your phone number and confirm the SMS code",
-        subtitle1: "Get chance for 400 AED voucher",
-        subtitle2: "Easy Steps . . . Complete the 3 offers then come back to this page to add your name and phone to contact you",
-        limitedOffer: "Limited offer"
-      },
-      ar: {
-        title: "أضف رقم هاتفك و أكد رمز الرسالة النصية",
-        subtitle1: "احصل على فرصة للحصول على قسيمة بقيمة 400 درهم",
-        subtitle2: "خطوات سهلة... أكمل العروض الثلاثة ثم عد إلى هذه الصفحة وأدخل اسمك ورقم هاتفك للتواصل معك",
-        limitedOffer: "عرض محدود"
-      },
-      fr: {
-        title: "Ajoutez votre numéro de téléphone et confirmez le code SMS",
-        subtitle1: "Tentez de gagner un bon de 400 AED",
-        subtitle2: "Étapes faciles... Complétez les 3 offres puis revenez ici pour entrer votre nom et téléphone",
-        limitedOffer: "Offre limitée"
-      },
-      de: {
-        title: "Fügen Sie Ihre Telefonnummer hinzu und bestätigen Sie den SMS-Code",
-        subtitle1
+    function submitForm(e) {
+      e.preventDefault();
+      alert("✅ Submitted! Thanks!");
+    }
+  </script>
+</body>
+</html>
